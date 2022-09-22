@@ -23,6 +23,7 @@ let removeTask = (id) => {
   let li = dom(`[data-id="'${id}'"]`);
   todo.removeChild(li);
 };
+console.log(todo);
 todo.addEventListener("click", (e) => {
   let id = e.target.getAttribute("data-id");
   console.log(id);

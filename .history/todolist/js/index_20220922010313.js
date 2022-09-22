@@ -20,9 +20,10 @@ let addTask = () => {
 };
 
 let removeTask = (id) => {
-  let li = dom(`[data-id="'${id}'"]`);
+  let li = dom(`[data-id="${id}'"]`);
   todo.removeChild(li);
 };
+
 todo.addEventListener("click", (e) => {
   let id = e.target.getAttribute("data-id");
   console.log(id);
