@@ -42,7 +42,6 @@ let removeDoneTask = (name) => {
   });
   console.log(tasks);
   displayTasks(tasks);
-};
 //==========================================
 let displayDoneTasks = (doneTasks) => {
   let html = doneTasks.reduce((result, doneTask) => {

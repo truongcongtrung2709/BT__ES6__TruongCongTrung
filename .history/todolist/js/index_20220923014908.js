@@ -30,19 +30,13 @@ let removeTask = (id) => {
 };
 let tranTask = (name) => {
   doneTasks.push(
-    ...tasks.filter((task) => {
+    ...tasks.pop((task) => {
       return task.taskName === name;
     })
   );
   displayDoneTasks(doneTasks);
 };
-let removeDoneTask = (name) => {
-  tasks = tasks.filter((task) => {
-    return task.taskName !== name;
-  });
-  console.log(tasks);
-  displayTasks(tasks);
-};
+
 //==========================================
 let displayDoneTasks = (doneTasks) => {
   let html = doneTasks.reduce((result, doneTask) => {
@@ -95,5 +89,4 @@ dom("#todo").addEventListener("click", (e) => {
   let name = e.target.getAttribute("data-name");
   if (!name) return;
   tranTask(name);
-  removeDoneTask(name);
 });

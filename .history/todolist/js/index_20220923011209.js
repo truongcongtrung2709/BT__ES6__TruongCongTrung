@@ -28,35 +28,14 @@ let removeTask = (id) => {
   console.log(tasks);
   displayTasks(tasks);
 };
-let tranTask = (name) => {
-  doneTasks.push(
-    ...tasks.filter((task) => {
-      return task.taskName === name;
-    })
-  );
-  displayDoneTasks(doneTasks);
-};
-let removeDoneTask = (name) => {
-  tasks = tasks.filter((task) => {
-    return task.taskName !== name;
+let taskDone = (name) => {
+  let done = tasks.filter((task) => {
+    return task.taskName === name;
   });
-  console.log(tasks);
-  displayTasks(tasks);
+  console.log(done);
 };
+
 //==========================================
-let displayDoneTasks = (doneTasks) => {
-  let html = doneTasks.reduce((result, doneTask) => {
-    return (
-      result +
-      `
-      <li>
-      ${doneTask.taskName}
-      </li>
-      `
-    );
-  }, "");
-  dom("#completed").innerHTML = html;
-};
 let displayTasks = (tasks) => {
   let html = tasks.reduce((result, task) => {
     return (
@@ -64,7 +43,7 @@ let displayTasks = (tasks) => {
       `
       <li>
       ${task.taskName}
-      <i id="checkBtn" data-name="${task.taskName}" class="fa-solid fa-check"></i>
+      <i data-name="${task.taskName}" class="fa-solid fa-check"></i>
       <i data-id="${task.taskId}" class="fa-light fa-trash"></i>
       </li>
       `
@@ -88,12 +67,12 @@ dom("#addTask").addEventListener("click", () => {
 });
 dom("#todo").addEventListener("click", (e) => {
   let id = e.target.getAttribute("data-id");
+ 
   if (!id) return;
   removeTask(id);
 });
 dom("#todo").addEventListener("click", (e) => {
-  let name = e.target.getAttribute("data-name");
-  if (!name) return;
-  tranTask(name);
-  removeDoneTask(name);
-});
+let name = e.target.getAttribute("data-name");
+if (!name) return;
+taskDone(name);
+}

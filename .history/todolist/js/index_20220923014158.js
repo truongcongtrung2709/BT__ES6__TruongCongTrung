@@ -36,13 +36,7 @@ let tranTask = (name) => {
   );
   displayDoneTasks(doneTasks);
 };
-let removeDoneTask = (name) => {
-  tasks = tasks.filter((task) => {
-    return task.taskName !== name;
-  });
-  console.log(tasks);
-  displayTasks(tasks);
-};
+
 //==========================================
 let displayDoneTasks = (doneTasks) => {
   let html = doneTasks.reduce((result, doneTask) => {
@@ -51,11 +45,13 @@ let displayDoneTasks = (doneTasks) => {
       `
       <li>
       ${doneTask.taskName}
+      <i id="checkBtn" data-name="${doneTask.taskName}" class="fa-solid fa-check"></i>
+      <i data-id="${doneTask.taskId}" class="fa-light fa-trash"></i>
       </li>
       `
     );
   }, "");
-  dom("#completed").innerHTML = html;
+  dom("#todo").innerHTML = html;
 };
 let displayTasks = (tasks) => {
   let html = tasks.reduce((result, task) => {
@@ -95,5 +91,4 @@ dom("#todo").addEventListener("click", (e) => {
   let name = e.target.getAttribute("data-name");
   if (!name) return;
   tranTask(name);
-  removeDoneTask(name);
 });

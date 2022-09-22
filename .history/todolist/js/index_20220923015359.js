@@ -42,7 +42,6 @@ let removeDoneTask = (name) => {
   });
   console.log(tasks);
   displayTasks(tasks);
-};
 //==========================================
 let displayDoneTasks = (doneTasks) => {
   let html = doneTasks.reduce((result, doneTask) => {
@@ -96,4 +95,4 @@ dom("#todo").addEventListener("click", (e) => {
   if (!name) return;
   tranTask(name);
   removeDoneTask(name);
-});
+}
