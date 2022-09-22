@@ -21,12 +21,10 @@ let addTask = (taskId, taskName) => {
     resetForm();
   }
 };
-let removeTask = (id) => {
+let removeTask = (taskId) => {
   tasks = tasks.filter((task) => {
-    return task.taskId !== id;
+    return task.taskId !== taskId;
   });
-  console.log(tasks);
-  displayTasks(tasks);
 };
 
 //==========================================
@@ -60,7 +58,7 @@ dom("#addTask").addEventListener("click", () => {
   addTask(taskId, taskName);
 });
 dom("#todo").addEventListener("click", (e) => {
-  let id = e.target.getAttribute("data-id");
+  let id = e.target.getAttribute("id");
   if (!id) return;
   removeTask(id);
 });

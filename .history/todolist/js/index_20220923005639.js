@@ -59,8 +59,8 @@ dom("#addTask").addEventListener("click", () => {
   let taskId = String(Date.now());
   addTask(taskId, taskName);
 });
-dom("#todo").addEventListener("click", (e) => {
-  let id = e.target.getAttribute("data-id");
-  if (!id) return;
-  removeTask(id);
-});
+// dom("#todo").addEventListener("click", (e) => {
+//   let id = e.target.getAttribute("data-id");
+//   if (!id) return;
+//   removeTask(id);
+// });

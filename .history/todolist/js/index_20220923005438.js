@@ -25,7 +25,6 @@ let removeTask = (id) => {
   tasks = tasks.filter((task) => {
     return task.taskId !== id;
   });
-  console.log(tasks);
   displayTasks(tasks);
 };
 

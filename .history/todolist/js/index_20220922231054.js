@@ -1,0 +1,53 @@
+let tasks = [];
+let todo = dom("#todo");
+let completed = dom("#completed");
+let newTask = dom("#taskName");
+
+let addTask = (taskId, taskName) => {
+  if (!taskName) {
+    alert("Please enter a task name");
+    return;
+  }
+  const li = document.createElement("li");
+  li.setAttribute("data-name", taskName);
+  li.setAttribute("task", taskId);
+  li.innerHTML = `
+       <p>${taskName}</p>
+       <i data-type="check" class="fa-solid fa-check"></i>
+       <i data-id="${taskId}" class="fa-solid fa-check"></i>
+       `;
+  todo.appendChild(li);
+  tasks.push({ taskId, taskName });
+  console.log(tasks);
+};
+let removeTask = (taskId) => {
+  var li = dom(`[task="${taskId}"]`);
+
+  let index = tasks.indexOf(taskId);
+  tasks.splice(index, 1);
+  console.log(tasks);
+  li.remove();
+};
+
+let checkTasks = (taskName) => {
+  var li = dom(`[data-name="${taskName}"]`);
+  let name = tasks.indexOf(taskName);
+};
+
+function dom(selector) {
+  return document.querySelector(selector);
+}
+//===============================
+dom("#addTask").addEventListener("click", (e) => {
+  e.preventDefault();
+  let taskName = newTask.value;
+  let taskId = String(Date.now());
+  addTask(taskId, taskName);
+});
+dom("#todo").addEventListener("click", (e) => {
+  let id = e.target.getAttribute("data-id");
+  let name = e.target.getAttribute("data-name");
+  if (!name) return;
+  if (!id) return;
+  removeTask(id);
+});

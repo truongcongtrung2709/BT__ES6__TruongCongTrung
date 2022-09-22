@@ -21,13 +21,7 @@ let addTask = (taskId, taskName) => {
     resetForm();
   }
 };
-let removeTask = (id) => {
-  tasks = tasks.filter((task) => {
-    return task.taskId !== id;
-  });
-  console.log(tasks);
-  displayTasks(tasks);
-};
+let removeTask = () => {};
 
 //==========================================
 let displayTasks = (tasks) => {
@@ -38,7 +32,7 @@ let displayTasks = (tasks) => {
       <li>
       ${task.taskName}
       <i class="fa-solid fa-check"></i>
-      <i data-id="${task.taskId}" class="fa-light fa-trash"></i>
+      <i id="${taskId}" class="fa-light fa-trash"></i>
       </li>
       `
     );
@@ -60,7 +54,7 @@ dom("#addTask").addEventListener("click", () => {
   addTask(taskId, taskName);
 });
 dom("#todo").addEventListener("click", (e) => {
-  let id = e.target.getAttribute("data-id");
+  let id = e.target.getAttribute("id");
   if (!id) return;
   removeTask(id);
 });
