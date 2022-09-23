@@ -28,21 +28,27 @@ let removeTask = (id) => {
   console.log(tasks);
   displayTasks(tasks);
 };
+
+
 let tranTask = (name) => {
   doneTasks.push(
     ...tasks.filter((task) => {
       return task.taskName === name;
     })
   );
+  console.log(doneTasks);
   displayDoneTasks(doneTasks);
 };
-let removeDoneTask = (name) => {
+let removeOldTask = (name) => {
   tasks = tasks.filter((task) => {
     return task.taskName !== name;
   });
   console.log(tasks);
   displayTasks(tasks);
+
 };
+
+
 //==========================================
 let displayDoneTasks = (doneTasks) => {
   let html = doneTasks.reduce((result, doneTask) => {
@@ -71,6 +77,7 @@ let displayTasks = (tasks) => {
     );
   }, "");
   dom("#todo").innerHTML = html;
+  
 };
 
 let resetForm = () => {
@@ -95,5 +102,27 @@ dom("#todo").addEventListener("click", (e) => {
   let name = e.target.getAttribute("data-name");
   if (!name) return;
   tranTask(name);
-  removeDoneTask(name);
+  removeOldTask(name);
+});
+
+dom("#two").addEventListener("click", (e) => {
+  console.log(tasks);
+  tasks.sort((a,b)=>{
+    if(a.taskName.toLowerCase() < b.taskName.toLowerCase()) return -1;
+    if(a.taskName.toLowerCase() > b.taskName.toLowerCase()) return 1;
+    return 0;
+  })
+  
+  console.log(tasks);
+  displayTasks(tasks);
+});
+dom("#three").addEventListener("click", (e) => {
+  console.log(tasks);
+  tasks.sort((a,b)=>{
+    if(a.taskName.toLowerCase() < b.taskName.toLowerCase()) return 1;
+    if(a.taskName.toLowerCase() > b.taskName.toLowerCase()) return -1;
+    return 0;
+  })
+  console.log(tasks);
+  displayTasks(tasks);
 });
